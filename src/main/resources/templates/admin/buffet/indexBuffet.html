@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- <link rel="stylesheet" href="style.css" /> -->
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Amministratore page</title>
+</head>
+
+<body>
+	<h4> BUFFET </h4>
+	<div>
+	    <li th:each="buffet : ${buffets}">
+	    	<a
+	    		th:text="'BUFFET: ' + ${buffet.nome} + ' (' + ${buffet.descrizione} + ') •CHEF: ' + ${buffet.chef.nome} + ' ' + ${buffet.chef.cognome} + '.' "> Non sono ancora stati programmati buffet </a>
+				<!-- <form th:action="@{'/cancellaPersona' + '/' + ${persona.id}}" method="post"><button> Cancella </button></form> -->
+			</li>
+	</div>
+	<div>
+		<a th:href="@{/buffetForm}"> + AGGIUNGI BUFFET </a>
+	</div>
+
+    <footer>
+		<a href="/">Home</a>
+	</footer>
+</body>
+</html>
