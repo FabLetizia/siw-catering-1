@@ -8,12 +8,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.spring.model.Buffet;
+import it.uniroma3.siw.spring.model.Chef;
 import it.uniroma3.siw.spring.repository.BuffetRepository;
+import it.uniroma3.siw.spring.repository.ChefRepository;
 
 @Service
 public class BuffetService {
 	@Autowired
 	private BuffetRepository buffetRepository;
+	@Autowired
+	private ChefRepository chefRepository;
 
 	@Transactional
 	public void aggiungiBuffet(Buffet b) {
@@ -29,7 +33,7 @@ public class BuffetService {
 	}
 	
 	public boolean alreadyExists(Buffet buffet) {
-		return buffetRepository.existsByNomeAndDescrizioneAndChef(buffet.getNome(), buffet.getDescrizione(), buffet.getChef());
+		return buffetRepository.existsByNome(buffet.getNome());
 	}
 
 	public List<Buffet> findAll(){
@@ -45,7 +49,25 @@ public class BuffetService {
 			return true;
 		else
 			return false;
-			} 
+			}
+
+	public void remove(Long id) {
+		buffetRepository.deleteById(id);	
+	}
+
+	public boolean alreadyExistsChef(Buffet b) {
+		if(chefRepository.findByNomeAndCognomeAndNazionalita(b.getChef().getNome(), b.getChef().getCognome(), b.getChef().getNazionalita()) != null )
+			return true;
+		else return false;
+	}
+
+	public Chef getChefById(Long id) {
+		return chefRepository.findById(id).get();
+	}
+
+	public Chef getChefByNomeAndCognomeAndNazionalita(Buffet b) {
+		return chefRepository.findByNomeAndCognomeAndNazionalita(b.getChef().getNome(), b.getChef().getCognome(), b.getChef().getNazionalita());
+	} 
 	
 
 }

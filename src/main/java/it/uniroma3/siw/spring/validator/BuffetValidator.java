@@ -22,8 +22,8 @@ public class BuffetValidator implements Validator {
 		if (this.buffetService.alreadyExists((Buffet)o)) {
 			errors.reject("buffet.duplicato");
 			}
-		if(this.buffetService.listaPiattiVuota((Buffet)o)) {
-			errors.reject("buffet.senzaPiatti");
-		}
+//		if(this.buffetService.listaPiattiVuota((Buffet)o)) {
+//			errors.reject("buffet.senzaPiatti");
+//		}
 	}
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>inserimento piatto</title>
+</head>
+<body>
+	<form th:action="@{/addPiatto}" method="POST" th:object="${piatti}">
+		<div th:if="${#fields.hasGlobalErrors()}">
+			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">Errore globale</p>
+		</div>
+		<div>
+			nome: <input type="text" th:field="*{nome}" />
+			<div>
+				<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+			</div>
+		</div>
+		<div>
+			descrizione: <input type="text" th:field="*{descrizione}" />
+			<div>
+				<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
+			</div>
+
+		</div>
+            
+		<div>
+			<button type="submit" />
+			Conferma
+		</div>
+	</form>
+</body>
+</html>

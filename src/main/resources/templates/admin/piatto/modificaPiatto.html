@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- <link rel="stylesheet" href="style.css" /> -->
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Amministratore page</title>
+</head>
+
+<body>
+	<div>
+		<h4>Modifica Piatto <h4>
+
+		<!-- DUBBIO -->
+		<div>
+			<a th:href="@{/}"> Cambia Nome</a>
+		</div>
+		<div>
+			<a th:href="@{/}">Cambia Descrizione</a>
+		</div>
+		<div>
+			<a th:href="@{'/indexIngrediente' + '/' + ${piatto.id}}">Ingredienti</a>
+		</div> 
+	</div>
+
+</body>
+</html>

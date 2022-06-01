@@ -15,7 +15,16 @@
 	    <li th:each="buffet : ${buffets}">
 	    	<a
 	    		th:text="'BUFFET: ' + ${buffet.nome} + ' (' + ${buffet.descrizione} + ') •CHEF: ' + ${buffet.chef.nome} + ' ' + ${buffet.chef.cognome} + '.' "> Non sono ancora stati programmati buffet </a>
-				<!-- <form th:action="@{'/cancellaPersona' + '/' + ${persona.id}}" method="post"><button> Cancella </button></form> -->
+
+	    		<span>
+				  <form th:action="@{'/mostraBuffet' + '/' + ${buffet.id}}" method="GET"><button> Visualizza </button></form>
+
+				  <form th:action="@{'/cancellaBuffet' + '/' + ${buffet.id}}" method="POST"><button> Cancella </button></form>
+
+				   <form th:action="@{'/modificaBuffet' + '/' + ${buffet.id}}" method="GET"><button> Modifica </button></form>
+
+				</span>
+				
 			</li>
 	</div>
 	<div>

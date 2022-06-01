@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- <link rel="stylesheet" href="style.css" /> -->
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Amministratore page</title>
+</head>
+
+<body>
+	<div>
+		<h4>Dettagli Piatto</h4>
+		<div>
+			<span th:text="${piatto.nome}">Carbonara</span>
+			<span th:text="${piatto.descrizione}">Piatto tipico romano</span>
+			
+		</div>
+
+		<div>
+		<h4>Tutti gli ingredienti:</h4>
+		<ul>
+			<li th:each="ingrediente : ${piatto.ingredienti}">
+				<a th:text="'•' + ${ingrediente.nome} + ' (' + ${ingrediente.descrizione} + ') + 'ORIGINE: ' + ${ingrediente.origine}"> Uova, pepe... </a>
+				
+			</li>
+			
+			
+		</ul>
+
+	</div>
+	</div>
+	<footer>
+		<a href="/">Home</a>
+	</footer>
+</body>
+</html>

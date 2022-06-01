@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- <link rel="stylesheet" href="style.css" /> -->
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Amministratore page</title>
+</head>
+
+<body>
+	<h4> PIATTI </h4>
+	<div>
+	    <li th:each="piatto : ${piatti}">
+	    	<a
+	    		th:text="'PIATTO: ' + ${piatto.nome} + ' (' + ${piatto.descrizione} + ') '.' "> Non sono ancora stati inseriti piatti </a>
+
+	    		<span>
+				  <form th:action="@{'/mostraPiatto' + '/' + ${piatto.id}}" method="GET"><button> Visualizza </button></form>
+
+				  <form th:action="@{'/cancellaPiatto' + '/' + ${piatto.id}}" method="POST"><button> Cancella </button></form>
+
+				   <form th:action="@{'/modificaPiatto' + '/' + ${piatto.id}}" method="GET"><button> Modifica </button></form>
+
+				</span>
+				
+			</li>
+	</div>
+	<div>
+		<a th:href="@{/piattoForm}"> + AGGIUNGI PIATTO </a>
+	</div>
+
+    <footer>
+		<a href="/">Home</a>
+	</footer>
+</body>
+</html>
