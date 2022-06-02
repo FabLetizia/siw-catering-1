@@ -1,8 +1,5 @@
 package it.uniroma3.siw.spring.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,18 +24,18 @@ public class PiattoController {
 //	@Autowired
 //	private PiattoValidator piattoValidator;
 	
-	@PostMapping("/piatto")
+	@PostMapping("/addPiatto")
 	  public String addPiatto(@Valid @ModelAttribute("piatto") Piatto piatto, BindingResult bindingResults, Model model) {
 		  //piattoValidator.validate(piatto,  bindingResults);
 		  if(!bindingResults.hasErrors()) {
 			  piattoService.aggiungiPiatto(piatto);
 			  model.addAttribute("piatto", piatto);
-			  
-			  /* DUBBIO */
-			  List<Piatto> piatti = new ArrayList<>();
-			  piatti = (List<Piatto>) model.getAttribute("piatti");
-			  piatti.add(piatto);
-			  model.addAttribute("piatti", piatti);
+		  /* ORSO */  
+//			  /* DUBBIO */
+//			  List<Piatto> piatti = new ArrayList<>();
+//			  piatti = (List<Piatto>) model.getAttribute("piatti");
+//			  piatti.add(piatto);
+//			  model.addAttribute("piatti", piatti);
 
 			  return "redirect:/indexPiatto";
 		  }
@@ -71,9 +68,15 @@ public class PiattoController {
 	 
 	 @GetMapping("/modificaPiatto/{id}")
 	  public String modificaPiatto(@PathVariable("id") Long id, Model model) {
-		  model.addAttribute("buffet", piattoService.findById(id));
+		  model.addAttribute("piatto", piattoService.findById(id));
 		  return "admin/piatto/modificaPiatto.html";
 	  }
+	 
+	 @GetMapping("/indexIngrediente/{id}")
+		public String getindexIngrediente(@PathVariable("id") Long id, Model model) {
+			model.addAttribute("ingredienti", piattoService.findById(id).getIngredienti());
+			return "admin/ingrediente/indexIngrediente.html";
+		}
 	 
 	 
 

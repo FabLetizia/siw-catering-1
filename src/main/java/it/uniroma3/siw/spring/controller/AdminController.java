@@ -23,11 +23,6 @@ public class AdminController {
 		
 	}
 	
-	@GetMapping("/indexIngrediente")
-	public String getindexIngrediente(Model model) {
-		model.addAttribute("ingrediente",new Ingrediente());
-		return "admin/ingrediente/indexIngrediente.html";
-		
-	}
+	
 
 }

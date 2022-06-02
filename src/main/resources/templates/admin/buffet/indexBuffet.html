@@ -5,27 +5,36 @@
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <style type="text/css"> .inline {display:  flex} </style>
 	<title>Amministratore page</title>
 </head>
 
 <body>
 	<h4> BUFFET </h4>
 	<div>
+		<ul>
 	    <li th:each="buffet : ${buffets}">
-	    	<a
+	    	<span>
+	    		<a
 	    		th:text="'BUFFET: ' + ${buffet.nome} + ' (' + ${buffet.descrizione} + ') •CHEF: ' + ${buffet.chef.nome} + ' ' + ${buffet.chef.cognome} + '.' "> Non sono ancora stati programmati buffet </a>
 
-	    		<span>
-				  <form th:action="@{'/mostraBuffet' + '/' + ${buffet.id}}" method="GET"><button> Visualizza </button></form>
+	    		
+	    		  <span>
+				  <a th:href="@{'/mostraBuffet' + '/' + ${buffet.id}}" method="GET"><button> Visualizza </button></a>
+				  </span>
 
-				  <form th:action="@{'/cancellaBuffet' + '/' + ${buffet.id}}" method="POST"><button> Cancella </button></form>
+                  <span>
+				  <form class="inline" th:action="@{'/cancellaBuffet' + '/' + ${buffet.id}}" method="POST"><button> Cancella </button></form>
+				  </span>
 
-				   <form th:action="@{'/modificaBuffet' + '/' + ${buffet.id}}" method="GET"><button> Modifica </button></form>
+                   <span>
+				   <a th:href="@{'/modificaBuffet' + '/' + ${buffet.id}}" method="GET"><button> Modifica </button></a>
+				   </span>
 
 				</span>
 				
 			</li>
+		</ul>
 	</div>
 	<div>
 		<a th:href="@{/buffetForm}"> + AGGIUNGI BUFFET </a>

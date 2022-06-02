@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- <link rel="stylesheet" href="style.css" /> -->
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Amministratore page</title>
+</head>
+
+<body>
+	<h4> INGREDIENTI </h4>
+	<div>
+	    <li th:each="ingrediente : ${ingredienti}">
+	    	<a
+	    		th:text="'• ' + ${ingrediente.nome} + ' (' + ${ingrediente.descrizione} + ') ' +'origine: ' + ${ingrediente.origine} + '.' "> Riso (basmati), origine: Sud america</a>
+
+	    		<span>
+				  <form th:action="@{'/mostraIngrediente' + '/' + ${ingrediente.id}}" method="GET"><button> Visualizza </button></form>
+
+				  <form th:action="@{'/cancellaIngrediente' + '/' + ${ingrediente.id}}" method="POST"><button> Cancella </button></form>
+
+				   <form th:action="@{'/modificaIngrediente' + '/' + ${ingrediente.id}}" method="GET"><button> Modifica </button></form>
+
+				</span>
+				
+			</li>
+	</div>
+	<div>
+		<a th:href="@{/ingredienteForm}"> + AGGIUNGI INGREDIENTE</a>
+	</div>
+
+    <footer>
+		<a href="/">Home</a>
+	</footer>
+</body>
+</html>

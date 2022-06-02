@@ -2,10 +2,10 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>inserimento piatto</title>
+<title>inserimento ingrediente</title>
 </head>
 <body>
-	<form th:action="@{/addPiatto}" method="POST" th:object="${piatto}">
+	<form th:action="@{/addIngrediente}" method="POST" th:object="${ingrediente}">
 		<div th:if="${#fields.hasGlobalErrors()}">
 			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">Errore globale</p>
 		</div>
@@ -19,6 +19,14 @@
 			descrizione: <input type="text" th:field="*{descrizione}" />
 			<div>
 				<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
+			</div>
+
+		</div>
+
+		<div>
+			origine: <input type="text" th:field="*{origine}" />
+			<div>
+				<span th:if="${#fields.hasErrors('origine')}" th:errors="*{origine}"></span>
 			</div>
 
 		</div>

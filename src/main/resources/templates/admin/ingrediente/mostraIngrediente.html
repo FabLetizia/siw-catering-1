@@ -11,20 +11,16 @@
 
 <body>
 	<div>
-		<h4>Home Page Admin <h4>
+		<h4>Dettagli Ingrediente</h4>
 		<div>
-			<a th:href="@{/indexBuffet}"> Gestione Buffet</a>
-		</div>
-		<div>
-			<a th:href="@{/indexpiatto}">Gestione Piatti</a>
-		</div>
-		<div>
-			<a th:href="@{/indexIngrediente}"> Gestione Ingredienti</a>
+			<span th:text="${ingrediente.nome}">Pepe</span>
+			<span th:text="${ingrediente.descrizione}"> Nero romano</span>
+			<span th:text="${ingrediente.origine}"> Lazio</span>
+			
 		</div>
 	</div>
-
- <footer>
+	<footer>
 		<a href="/">Home</a>
- </footer>
+	</footer>
 </body>
 </html>
