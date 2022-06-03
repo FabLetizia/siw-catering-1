@@ -14,7 +14,7 @@
 	<div>
 	    <li th:each="ingrediente : ${ingredienti}">
 	    	<a
-	    		th:text="'• ' + ${ingrediente.nome} + ' (' + ${ingrediente.descrizione} + ') ' +'origine: ' + ${ingrediente.origine} + '.' "> Riso (basmati), origine: Sud america</a>
+	    		th:text="${ingrediente.nome} + ' (' + ${ingrediente.descrizione} + ') ' +'origine: ' + ${ingrediente.origine} + '.' "> Riso (basmati), origine: Sud america</a>
 
 	    		<span>
 				  <form th:action="@{'/mostraIngrediente' + '/' + ${ingrediente.id}}" method="GET"><button> Visualizza </button></form>

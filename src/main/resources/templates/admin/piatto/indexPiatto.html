@@ -14,7 +14,7 @@
 	<div>
 	    <li th:each="piatto : ${piatti}">
 	    	<a
-	    		th:text="'PIATTO: ' + ${piatto.nome} + ' (' + ${piatto.descrizione} + ') '.' "> Non sono ancora stati inseriti piatti </a>
+	    		th:text="${piatto.nome} + ' (' + ${piatto.descrizione} + ')' + '.' "> Amatriciana (piatto tipico romano). </a>
 
 	    		<span>
 				  <form th:action="@{'/mostraPiatto' + '/' + ${piatto.id}}" method="GET"><button> Visualizza </button></form>
