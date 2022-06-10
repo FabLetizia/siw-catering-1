@@ -2,45 +2,36 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>inserimento piatto</title>
+<title>inserimento ingrediente</title>
 </head>
 <body>
-	<form th:action="@{/addPiatto}" method="POST" th:object="${piatto}">
+	<form th:action="@{/addIngrediente/{id}(id=${piatto_id})}" method="POST" th:object="${ingrediente}">
 		<div th:if="${#fields.hasGlobalErrors()}">
 			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">Errore globale</p>
 		</div>
-
 		<div>
 			nome: <input type="text" th:field="*{nome}" />
 			<div>
 				<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
 			</div>
 		</div>
-
 		<div>
 			descrizione: <input type="text" th:field="*{descrizione}" />
 			<div>
 				<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
 			</div>
-		</div>
-        
-        <div>
-		   <label>Ingredienti</label>
-				<div>
-					<th:block th:each="ingrediente: ${tuttiGliIngredienti}">
-						<input 	type="checkbox" 
-						th:field="*{ingredienti}"
-						th:text="${ingrediente.nome}" 
-						th:value="${ingrediente.id}">
-					</th:block>
-				</div>
-				<div>
-				   <span th:if="${#fields.hasErrors('ingredienti')}"
-					th:errors="*{ingredienti}"></span>
-				</div>
-        </div>
 
-        <div>
+		</div>
+
+		<div>
+			origine: <input type="text" th:field="*{origine}" />
+			<div>
+				<span th:if="${#fields.hasErrors('origine')}" th:errors="*{origine}"></span>
+			</div>
+
+		</div>
+            
+		<div>
 			<button type="submit" />
 			Conferma
 		</div>

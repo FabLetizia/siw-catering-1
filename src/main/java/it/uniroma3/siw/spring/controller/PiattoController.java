@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.spring.model.Piatto;
+import it.uniroma3.siw.spring.service.BuffetService;
+import it.uniroma3.siw.spring.service.IngredienteService;
 import it.uniroma3.siw.spring.service.PiattoService;
+import it.uniroma3.siw.spring.validator.PiattoValidator;
 
 
 @Controller
@@ -21,23 +24,38 @@ public class PiattoController {
 	@Autowired
 	private PiattoService piattoService;
 	
-//	@Autowired
-//	private PiattoValidator piattoValidator;
+	@Autowired
+	private IngredienteService ingredienteService;
+	
+	@Autowired
+	private BuffetService buffetService;
+	
+	@Autowired
+	private PiattoValidator piattoValidator;
 	
 	@PostMapping("/addPiatto")
 	  public String addPiatto(@Valid @ModelAttribute("piatto") Piatto piatto, BindingResult bindingResults, Model model) {
-		  //piattoValidator.validate(piatto,  bindingResults);
+		  piattoValidator.validate(piatto, bindingResults);
 		  if(!bindingResults.hasErrors()) {
 			  piattoService.aggiungiPiatto(piatto);
 			  model.addAttribute("piatto", piatto);
-		  /* ORSO */  
-//			  /* DUBBIO */
-//			  List<Piatto> piatti = new ArrayList<>();
-//			  piatti = (List<Piatto>) model.getAttribute("piatti");
-//			  piatti.add(piatto);
-//			  model.addAttribute("piatti", piatti);
 
 			  return "redirect:/indexPiatto";
+		  }
+		  else {
+				model.addAttribute("tuttiGliIngredienti", ingredienteService.findAll());
+				return "admin/piatto/piattoForm.html";
+		  } 
+	  }
+	
+	@PostMapping("/addPiatto/{id}")
+	  public String addPiattoABuffet(@PathVariable Long id, @Valid @ModelAttribute("piatto") Piatto piatto, BindingResult bindingResults, Model model) {
+		  piattoValidator.validate(piatto,  bindingResults);
+		  if(!bindingResults.hasErrors()) {
+			  buffetService.findById(id).getPiatti().add(piatto);
+			  buffetService.aggiungiBuffet(buffetService.findById(id));
+			  model.addAttribute("piatto", piatto);
+			  return "redirect:/indexBuffet";
 		  }
 		  return "admin/piatto/piattoForm.html";
 	  }
@@ -45,16 +63,25 @@ public class PiattoController {
 	@GetMapping("/piattoForm")
 	public String getPiattoForm(Model model) {
 		model.addAttribute("piatto",new Piatto());
+		model.addAttribute("tuttiGliIngredienti", ingredienteService.findAll());
 		return "admin/piatto/piattoForm.html";	
 	}
 	
-	@GetMapping("/indexpiatto")
+	@GetMapping("/piattoForm/{id}")
+	public String getPiattoFormPerBuffet(@PathVariable Long id, Model model) {
+		model.addAttribute("piatto",new Piatto());
+		model.addAttribute("buffet_id",id);
+		model.addAttribute("tuttiGliIngredienti", ingredienteService.findAll());
+		return "admin/piatto/piattoFormPerBuffet.html";	
+	}
+	
+	@GetMapping("/indexPiatto")
 	public String getindexPiatto(Model model) {
 		model.addAttribute("piatti", piattoService.findAll());
 		return "admin/piatto/indexPiatto.html";
 	}
 	
-	 @PostMapping("/cancellaPiatto/{id}")
+	 @GetMapping("/cancellaPiatto/{id}")
 	  public String removePiatto(@PathVariable("id") Long id, Model model) {
 		  piattoService.remove(id);
 		  return "redirect:/indexPiatto";
@@ -75,9 +102,9 @@ public class PiattoController {
 	 @GetMapping("/indexIngrediente/{id}")
 		public String getindexIngrediente(@PathVariable("id") Long id, Model model) {
 			model.addAttribute("ingredienti", piattoService.findById(id).getIngredienti());
-			return "admin/ingrediente/indexIngrediente.html";
+			model.addAttribute("piatto_id", id);
+			return "admin/ingrediente/indexIngredienteInPiatto.html";
 		}
-	 
 	 
 
 }

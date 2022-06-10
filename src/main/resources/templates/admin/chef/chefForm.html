@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>inserimento ingrediente</title>
+</head>
+<body>
+	<form th:action="@{/addChef}" method="POST" th:object="${chef}">
+		<div th:if="${#fields.hasGlobalErrors()}">
+			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">Errore globale</p>
+		</div>
+		<div>
+			nome: <input type="text" th:field="*{nome}" />
+			<div>
+				<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+			</div>
+		</div>
+		<div>
+			cognome: <input type="text" th:field="*{cognome}" />
+			<div>
+				<span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
+			</div>
+
+		</div>
+
+		<div>
+			nazionalità: <input type="text" th:field="*{nazionalita}" />
+			<div>
+				<span th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></span>
+			</div>
+
+		</div>
+            
+		<div>
+			<button type="submit" />
+			Conferma
+		</div>
+	</form>
+</body>
+</html>

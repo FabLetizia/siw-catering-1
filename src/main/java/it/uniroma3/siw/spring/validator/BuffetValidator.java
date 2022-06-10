@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+
 import it.uniroma3.siw.spring.model.Buffet;
 import it.uniroma3.siw.spring.service.BuffetService;
 
@@ -22,8 +23,9 @@ public class BuffetValidator implements Validator {
 		if (this.buffetService.alreadyExists((Buffet)o)) {
 			errors.reject("buffet.duplicato");
 			}
-//		if(this.buffetService.listaPiattiVuota((Buffet)o)) {
-//			errors.reject("buffet.senzaPiatti");
-//		}
+		Buffet b = (Buffet)o;
+		if(b.getPiatti() == null || b.getPiatti().size() < 2) {
+			errors.reject("buffet.vuoto");
+		}
 	}
 }

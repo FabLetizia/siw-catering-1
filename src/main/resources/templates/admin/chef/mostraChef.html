@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- <link rel="stylesheet" href="style.css" /> -->
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Amministratore page</title>
+</head>
+
+<body>
+	<div>
+		<h4>Dettagli Chef</h4>
+		<div>
+			<span th:text="'NOME: ' + ${chef.nome}">Fabio</span>
+			<span th:text="'COGNOME: ' + ${chef.cognome}"> Letizia</span>
+			<span th:text="'NAZIONALITA: ' + ${chef.nazionalita}"> italiana</span>
+		</div>
+		<div>
+		<h4>Tutti i suoi buffet:</h4>
+		<ul>
+			<li th:each="buffet : ${chef.buffets}">
+				<a th:text="'•' + ${buffet.nome} + ' (' + ${buffet.descrizione} + ')"> ...</a>
+			</li>	
+		</ul>
+	    </div>
+	</div>
+	<footer>
+		<a href="/">Home</a>
+	</footer>
+</body>
+</html>

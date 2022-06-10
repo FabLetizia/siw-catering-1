@@ -1,32 +1,33 @@
 package it.uniroma3.siw.spring.validator;
 
-import javax.validation.Valid;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import it.uniroma3.siw.spring.model.Piatto;
+import it.uniroma3.siw.spring.service.PiattoService;
 
 @Component
 public class PiattoValidator implements Validator{
-
-	public void validate(@Valid Piatto piatto, BindingResult bindingResults) {
-		
-		
-	}
+	
+	@Autowired PiattoService piattoService;
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		// TODO Auto-generated method stub
-		return false;
+		return Piatto.class.equals(clazz);
+
 	}
 
 	@Override
-	public void validate(Object target, Errors errors) {
-		// TODO Auto-generated method stub
-		
+	public void validate(Object o, Errors errors) {
+		if(this.piattoService.alredyExists((Piatto) o)) {
+			errors.reject("piatto.duplicato");
+		}
+		Piatto p = (Piatto)o;
+		if(p.getIngredienti() == null || p.getIngredienti().size() < 2) {
+			errors.reject("piatto.vuoto");
+		}
 	}
 
 }

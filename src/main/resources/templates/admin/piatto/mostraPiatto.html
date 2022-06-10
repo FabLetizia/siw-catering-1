@@ -22,7 +22,7 @@
 		<h4>Tutti gli ingredienti:</h4>
 		<ul>
 			<li th:each="ingrediente : ${piatto.ingredienti}">
-				<a th:text="'•' + ${ingrediente.nome} + ' (' + ${ingrediente.descrizione} + ') + 'ORIGINE: ' + ${ingrediente.origine}"> Uova, pepe... </a>
+				<a th:text="${ingrediente.nome} + ' (' + ${ingrediente.descrizione} + ') ORIGINE: ' + ${ingrediente.origine}"> Uova, pepe... </a>
 				
 			</li>
 			

@@ -41,4 +41,9 @@ public class PiattoService {
 		piattoRepository.deleteById(id);	
 	}
 
+	public boolean alredyExists(Piatto piatto) {
+		return this.piattoRepository.existsByNomeAndDescrizione(piatto.getNome(), piatto.getDescrizione());
+
+	}
+
 }

@@ -40,5 +40,9 @@ public class IngredienteService {
 	public void remove(Long id) {
 		ingredienteRepository.deleteById(id);	
 	}
+	
+	public boolean alreadyExists(Ingrediente ingrediente) {
+		return ingredienteRepository.existsByNomeAndDescrizioneAndOrigine(ingrediente.getNome(), ingrediente.getDescrizione(), ingrediente.getOrigine());
+	}
 
 }

@@ -1,6 +1,6 @@
 package it.uniroma3.siw.spring.model;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -24,7 +24,7 @@ public class Buffet {
 	@NotBlank
 	private String nome;
 	
-	//@NotBlank --> non messo: è utile ma non è essenziale
+	@NotBlank 
 	private String descrizione;
 	
 	@NotNull
@@ -32,11 +32,13 @@ public class Buffet {
 	private Chef chef;
 	
 	@ManyToMany(fetch=FetchType.EAGER, cascade= {CascadeType.PERSIST, CascadeType.MERGE})
-	private List<Piatto> piatti;
+	private Set<Piatto> piatti;
 	
 	
 	/* COSTRUTTORI */
-	public Buffet() {}
+	public Buffet() {
+		
+	}
 
 	
 	
@@ -73,11 +75,11 @@ public class Buffet {
 		this.chef = chef;
 	}
 
-	public List<Piatto> getPiatti() {
+	public Set<Piatto> getPiatti() {
 		return piatti;
 	}
 
-	public void setPiatti(List<Piatto> piatti) {
+	public void setPiatti(Set<Piatto> piatti) {
 		this.piatti = piatti;
 	}
 	

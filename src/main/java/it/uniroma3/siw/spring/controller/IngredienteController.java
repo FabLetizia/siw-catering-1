@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.spring.model.Ingrediente;
 import it.uniroma3.siw.spring.service.IngredienteService;
+import it.uniroma3.siw.spring.service.PiattoService;
+import it.uniroma3.siw.spring.validator.IngredienteValidator;
 
 @Controller
 public class IngredienteController {
@@ -20,24 +22,32 @@ public class IngredienteController {
 	@Autowired
 	private IngredienteService ingredienteService;
 	
-//	@Autowired
-//	private PiattoValidator piattoValidator;
+	@Autowired
+	private PiattoService piattoService;
+	
+	@Autowired
+	private IngredienteValidator ingredienteValidator;
 	
 	@PostMapping("/addIngrediente")
 	  public String addIngrediente(@Valid @ModelAttribute("ingrediente") Ingrediente ingrediente, BindingResult bindingResults, Model model) {
-		  //piattoValidator.validate(piatto,  bindingResults);
+		  ingredienteValidator.validate(ingrediente,  bindingResults);
 		  if(!bindingResults.hasErrors()) {
 			  ingredienteService.aggiungiIngrediente(ingrediente);
 			  model.addAttribute("ingrediente", ingrediente);
-			  
-			  /* ORSO */
-//			  /* DUBBIO */
-//			  List<Ingrediente> ingredienti = new ArrayList<>();
-//			  ingredienti = (List<Ingrediente>) model.getAttribute("ingredienti");
-//			  ingredienti.add(ingrediente);
-//			  model.addAttribute("ingredienti", ingredienti);
 
 			  return "redirect:/indexIngrediente";
+		  }
+		  return "admin/ingrediente/ingredienteForm.html";
+	  }
+	
+	@PostMapping("/addIngrediente/{id}")
+	  public String addIngredienteAPiatto(@PathVariable Long id, @Valid @ModelAttribute("ingrediente") Ingrediente ingrediente, BindingResult bindingResults, Model model) {
+		  ingredienteValidator.validate(ingrediente,  bindingResults);
+		  if(!bindingResults.hasErrors()) {
+			  piattoService.findById(id).getIngredienti().add(ingrediente);
+			  piattoService.aggiungiPiatto(piattoService.findById(id));
+			  model.addAttribute("ingrediente", ingrediente);
+			  return "redirect:/indexBuffet";
 		  }
 		  return "admin/ingrediente/ingredienteForm.html";
 	  }
@@ -48,13 +58,20 @@ public class IngredienteController {
 		return "admin/ingrediente/ingredienteForm.html";
 	}
 	
+	@GetMapping("/ingredienteForm/{id}")
+	public String getIngredienteFormPerPiatto(@PathVariable Long id, Model model) {
+		model.addAttribute("ingrediente",new Ingrediente());
+		model.addAttribute("piatto_id",id);
+		return "admin/ingrediente/ingredienteFormPerPiatto.html";	
+	}
+	
 	@GetMapping("/indexIngrediente")
 	public String getindexIngrediente(Model model) {
 		model.addAttribute("ingredienti", ingredienteService.findAll());
 		return "admin/ingrediente/indexIngrediente.html";
 	}
 
-	 @PostMapping("/cancellaIngrediente/{id}")
+	 @GetMapping("/cancellaIngrediente/{id}")
 	  public String removeIngrediente(@PathVariable("id") Long id, Model model) {
 		  ingredienteService.remove(id);
 		  return "redirect:/indexIngrediente";

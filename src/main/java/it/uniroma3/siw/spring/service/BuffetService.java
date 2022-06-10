@@ -22,6 +22,7 @@ public class BuffetService {
 	@Transactional
 	public void aggiungiBuffet(Buffet b) {
 		buffetRepository.save(b);
+		b.getChef().getBuffets().add(b);
 	}
 
 	public void rimuoviBuffet(Long id) {
@@ -33,7 +34,7 @@ public class BuffetService {
 	}
 	
 	public boolean alreadyExists(Buffet buffet) {
-		return buffetRepository.existsByNome(buffet.getNome());
+		return buffetRepository.existsByNomeAndDescrizioneAndChef(buffet.getNome(), buffet.getDescrizione(), buffet.getChef());
 	}
 
 	public List<Buffet> findAll(){

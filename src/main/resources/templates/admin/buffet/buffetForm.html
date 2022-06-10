@@ -23,26 +23,41 @@
 
 		</div>
 		<div>
-			 CHEF:
-			 <div> 
-			 	-nome: <input type="text" th:field="*{chef.nome}"/>
-			<!-- <div>
-				<span th:if="${#fields.hasErrors('chef.nome')}" th:errors="*{chef.nome}"></span>
-			</div> --> 
-            </div>
-            <div> 
-			 	-cognome: <input type="text" th:field="*{chef.cognome}"/>
-			<!-- <div>
-				<span th:if="${#fields.hasErrors('chef.cognome')}" th:errors="*{chef.cognome}"></span>
-			</div> --> 
-            </div>
-            <div> 
-			 	-nazionalita: <input type="text" th:field="*{chef.nazionalita}"/>
-			<!-- <div>
-				<span th:if="${#fields.hasErrors('chef.nazionalita')}" th:errors="*{chef.nazionalita}"></span>
-			</div>  -->
+			
             </div>
 		</div>
+
+		<div>
+		   <label>Chef</label>
+				<div>
+					<th:block th:each="chef: ${tuttiGliChef}">
+						<input 	type="radio"
+						th:field="*{chef}"
+						th:text="${chef.nome} + ${chef.cognome}" 
+						th:value="${chef.id}">
+					</th:block>
+				</div>
+				<div>
+				   <span th:if="${#fields.hasErrors('chef')}"
+					th:errors="*{chef}"></span>
+				</div>
+        </div>
+
+		<div>
+		   <label>Piatti</label>
+				<div>
+					<th:block th:each="piatto: ${tuttiIPiatti}">
+						<input 	type="checkbox" 
+						th:field="*{piatti}"
+						th:text="${piatto.nome}" 
+						th:value="${piatto.id}">
+					</th:block>
+				</div>
+				<div>
+				   <span th:if="${#fields.hasErrors('piatti')}"
+					th:errors="*{piatti}"></span>
+				</div>
+        </div>
 		<div>
 			<button type="submit" />
 			Conferma

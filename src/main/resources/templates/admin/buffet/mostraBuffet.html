@@ -24,7 +24,7 @@
 		<h4>Tutti i piatti:</h4>
 		<ul>
 			<li th:each="piatto : ${buffet.piatti}">
-				<a th:text="'•' + ${piatto.nome} + ' (' + ${piatto.descrizione} + ')"> Non sono ancora stati programmati buffet </a>
+				<a th:text="${piatto.nome} + ' (' + ${piatto.descrizione} + ')'"> Non sono ancora stati programmati buffet </a>
 				
 			</li>
 			

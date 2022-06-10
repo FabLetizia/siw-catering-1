@@ -12,23 +12,23 @@
 <body>
 	<h4> INGREDIENTI </h4>
 	<div>
+		<ul>
 	    <li th:each="ingrediente : ${ingredienti}">
 	    	<a
-	    		th:text="${ingrediente.nome} + ' (' + ${ingrediente.descrizione} + ') ' +'origine: ' + ${ingrediente.origine} + '.' "> Riso (basmati), origine: Sud america</a>
+	    		th:text="${ingrediente.nome} + ' (' + ${ingrediente.descrizione} + ')' + '.' "> Sale (grosso). </a>
 
 	    		<span>
-				  <a th:href="@{'/mostraIngrediente' + '/' + ${ingrediente.id}}"><button> Visualizza </button></a>
+				  <a th:href="@{'/mostraIngrediente' + '/' + ${ingrediente.id}}" ><button> Visualizza </button></a>
 
 				  <a th:href="@{'/cancellaIngrediente' + '/' + ${ingrediente.id}}" ><button> Cancella </button></a>
 
 				   <a th:href="@{'/modificaIngrediente' + '/' + ${ingrediente.id}}" ><button> Modifica </button></a>
-
 				</span>
-				
 			</li>
+	    </ul>
 	</div>
 	<div>
-		<a th:href="@{/ingredienteForm}"> + AGGIUNGI INGREDIENTE</a>
+		<a th:href="@{/ingredienteForm/{id}(id=${piatto_id})}"> + AGGIUNGI INGREDIENTE A PIATTO </a>
 	</div>
 
     <footer>

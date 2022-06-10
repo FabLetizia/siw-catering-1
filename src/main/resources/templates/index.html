@@ -1,31 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="css/main.css" />
+<link rel="stylesheet" href="css/index.css" />
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Login page</title>
+	<title>Catering Siw home page</title>
 </head>
 
 <body>
-	<div class="main">
-		<div class="navbar">
-			<h2 class="logo">Home</h2>
-			
-		</div>
+	<div id="main">
+	<header> 
 		
-	</div>
+		<!-- Barra di navigazione nel sito -->
+		<nav>
+
+			<div class="title">
+				CATERING SIW SU ROMA 
+			</div>
 
 
-	<div>
-		<h4><h4>
-		<span>
-			<a th:href="@{/indexAdmin}">Amministratore</a>
-		</span>
+   			<div class="buttoname">
+   				<a th:href="@{/}"> HOME </a>
+   			</div>
+   			<!-- Buffet e chef a tendina -->
+			<div class="tendina">
+			  <button class="buttoname">BUFFET</button>
+			  <div class="content" >
+			    <a th:each="buffet : ${tuttiIBuffet}" th:href="@{'/buffet' + '/' + ${buffet.id}}" th:text="${buffet.nome}"></a>
+			  </div>
+			</div>
+
+			<div class="tendina">
+			  <button class="buttoname">CHEF</button>
+			  <div class="content" >
+			    <a th:each="chef : ${tuttiGliChef}" th:href="@{'/chef' + '/' + ${chef.id}}" th:text="${chef.nome} + ' ' + ${chef.cognome}"></a>
+			  </div>
+			</div>
+
+			<div class="buttoname">
+   				<a th:href="@{/}"> CONTATTI </a>
+   			</div>
+
+   			<div class="buttoname">
+   				<a th:href="@{/indexAdmin}"> ADMIN</a>
+   			</div>
+
 		
+	    </nav>
+		
+	</header>
+
 	</div>
+
+	<div id="info">
+		<h2> CATERING FABIOPRO SU ROMA </h2>
+		In tutta Roma con top eventi catering, feste, matrimoni. 
+		Scegli il catering per il tuo evento privato o aziendale.
+		Vuoi organizzare un banchetto per dei festeggiamenti? Scegli la qualità con CateringSiw. Fai una richiesta, scegli il professionista più adatto a te! 
+		Piatti a buffet cerimonia per al tua celebrazione.
+	</div>
+
+	<footer>
+		footer
+	</footer>
 
 </body>
 </html>

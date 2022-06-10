@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- <link rel="stylesheet" href="style.css" /> -->
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Amministratore page</title>
+</head>
+
+<body>
+	<h4> CHEF </h4>
+	<div>
+	    <li th:each="chef : ${chefs}">
+	    	<a
+	    		th:text="${chef.nome} + ' ' + ${chef.cognome} + ', ' + 'nazionalità: ' + ${chef.nazionalita} + '.' "> Fabio Letizia, nazionalita: italiana</a>
+
+	    		<span>
+				  <a th:href="@{'/mostraChef' + '/' + ${chef.id}}"><button> Visualizza </button></a>
+
+				  <a th:href="@{'/cancellaChef' + '/' + ${chef.id}}" ><button> Cancella </button></a>
+
+				   <a th:href="@{'/modificaChef' + '/' + ${chef.id}}" ><button> Modifica </button></a>
+
+				</span>
+				
+			</li>
+	</div>
+	<div>
+		<a th:href="@{/chefForm}"> + AGGIUNGI CHEF </a>
+	</div>
+
+    <footer>
+		<a href="/">Home</a>
+	</footer>
+</body>
+</html>
