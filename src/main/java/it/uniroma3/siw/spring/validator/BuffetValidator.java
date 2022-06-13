@@ -27,5 +27,9 @@ public class BuffetValidator implements Validator {
 		if(b.getPiatti() == null || b.getPiatti().size() < 2) {
 			errors.reject("buffet.vuoto");
 		}
+		
+		if(b.getChef()==null) {
+			errors.reject("buffet.chef.null");
+		}
 	}
 }

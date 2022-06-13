@@ -12,20 +12,42 @@
 <body>
 	<div>
 		<h4>Modifica Chef <h4>
+        <div>
+		    <form th:action="@{/admin/updateChef/{id}(id=${chef.id})}" th:object = "${chef}" method="POST">
+				<div>
+					<label>Nome</label>
+					<input
+					    type = "text"
+						name = "nome"
+						th:field = "*{nome}"
+						placeholder="Inserisci il nome" />
+				</div>
+						
+				<div>
+					<label>Cognome</label>
+					<input
+						type = "text"
+						name = "cognome"
+						th:field = "*{cognome}"
+						placeholder="Inserisci il cognome"/>
+				</div>
+						
+				<div>
+					<label>Nazionalita</label>
+					<input
+						type = "text"
+						name = "nazionalita"
+						th:field = "*{nazionalita}"					placeholder="Inserisci la nazionalita"/>
+				</div>
+						
+				<div>
+					<button type="submit">Invia</button>
+				</div>
 
-		<!-- DUBBIO -->
-		<div>
-			<a th:href="@{/}"> Cambia Nome</a>
+			</form>
+				
 		</div>
-		<div>
-			<a th:href="@{/}">Cambia Cognome</a>
-		</div>
-
-		<div>
-			<a th:href="@{/}">Cambia Nazionalita</a>
-		</div>
-		
-	</div>
+    </div>
 
 </body>
 </html>

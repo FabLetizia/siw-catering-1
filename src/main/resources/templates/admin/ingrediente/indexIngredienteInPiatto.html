@@ -18,17 +18,17 @@
 	    		th:text="${ingrediente.nome} + ' (' + ${ingrediente.descrizione} + ')' + '.' "> Sale (grosso). </a>
 
 	    		<span>
-				  <a th:href="@{'/mostraIngrediente' + '/' + ${ingrediente.id}}" ><button> Visualizza </button></a>
+				  <a th:href="@{'/admin/mostraIngrediente' + '/' + ${ingrediente.id}}" ><button> Visualizza </button></a>
 
-				  <a th:href="@{'/cancellaIngrediente' + '/' + ${ingrediente.id}}" ><button> Cancella </button></a>
+				  <a th:href="@{'/admin/cancellaIngrediente' + '/' + ${ingrediente.id}}" ><button> Cancella </button></a>
 
-				   <a th:href="@{'/modificaIngrediente' + '/' + ${ingrediente.id}}" ><button> Modifica </button></a>
+				   <a th:href="@{'/admin/modificaIngrediente' + '/' + ${ingrediente.id}}" ><button> Modifica </button></a>
 				</span>
 			</li>
 	    </ul>
 	</div>
 	<div>
-		<a th:href="@{/ingredienteForm/{id}(id=${piatto_id})}"> + AGGIUNGI INGREDIENTE A PIATTO </a>
+		<a th:href="@{/admin/ingredienteForm/{id}(id=${piatto_id})}"> + AGGIUNGI INGREDIENTE A PIATTO </a>
 	</div>
 
     <footer>

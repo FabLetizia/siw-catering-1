@@ -19,15 +19,15 @@
 
 	    		
 	    		  <span>
-				  <a th:href="@{'/mostraBuffet' + '/' + ${buffet.id}}"><button> Visualizza </button></a>
+				  <a th:href="@{'/admin/mostraBuffet' + '/' + ${buffet.id}}"><button> Visualizza </button></a>
 				  </span>
 
                   <span>
-				  <a th:href="@{'/cancellaBuffet' + '/' + ${buffet.id}}" ><button> Cancella </button></a>
+				  <a th:href="@{'/admin/cancellaBuffet' + '/' + ${buffet.id}}" ><button> Cancella </button></a>
 				  </span>
 
                    <span>
-				   <a th:href="@{'/modificaBuffet' + '/' + ${buffet.id}}" ><button> Modifica </button></a>
+				   <a th:href="@{'/admin/modificaBuffet' + '/' + ${buffet.id}}" ><button> Modifica </button></a>
 				   </span>
 
 				</span>
@@ -36,11 +36,11 @@
 		</ul>
 	</div>
 	<div>
-		<a th:href="@{/buffetForm}"> + AGGIUNGI BUFFET </a>
+		<a th:href="@{/admin/buffetForm}"> + AGGIUNGI BUFFET </a>
 	</div>
 
     <footer>
-		<a href="/">Home</a>
+		<a th:href="@{/admin/indexAdmin}">INDIETRO</a>
 	</footer>
 </body>
 </html>

@@ -17,22 +17,22 @@
 	    		th:text="${ingrediente.nome} + ' (' + ${ingrediente.descrizione} + ') ' +'origine: ' + ${ingrediente.origine} + '.' "> Riso (basmati), origine: Sud america</a>
 
 	    		<span>
-				  <a th:href="@{'/mostraIngrediente' + '/' + ${ingrediente.id}}"><button> Visualizza </button></a>
+				  <a th:href="@{'/admin/mostraIngrediente' + '/' + ${ingrediente.id}}"><button> Visualizza </button></a>
 
-				  <a th:href="@{'/cancellaIngrediente' + '/' + ${ingrediente.id}}" ><button> Cancella </button></a>
+				  <a th:href="@{'/admin/cancellaIngrediente' + '/' + ${ingrediente.id}}" ><button> Cancella </button></a>
 
-				   <a th:href="@{'/modificaIngrediente' + '/' + ${ingrediente.id}}" ><button> Modifica </button></a>
+				   <a th:href="@{'/admin/modificaIngrediente' + '/' + ${ingrediente.id}}" ><button> Modifica </button></a>
 
 				</span>
 				
 			</li>
 	</div>
 	<div>
-		<a th:href="@{/ingredienteForm}"> + AGGIUNGI INGREDIENTE</a>
+		<a th:href="@{/admin/ingredienteForm}"> + AGGIUNGI INGREDIENTE</a>
 	</div>
 
     <footer>
-		<a href="/">Home</a>
+		<a th:href="@{/admin/indexAdmin}">INDIETRO</a>
 	</footer>
 </body>
 </html>

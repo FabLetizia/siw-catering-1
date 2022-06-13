@@ -5,7 +5,7 @@
 <title>inserimento ingrediente</title>
 </head>
 <body>
-	<form th:action="@{/addChef}" method="POST" th:object="${chef}">
+	<form th:action="@{/admin/addChef}" method="POST" th:object="${chef}">
 		<div th:if="${#fields.hasGlobalErrors()}">
 			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">Errore globale</p>
 		</div>

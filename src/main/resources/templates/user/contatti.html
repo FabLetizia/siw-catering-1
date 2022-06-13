@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="/css/contatti.css" />
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Catering Siw Contatti</title>
+	</head>
+
+	<body>
+
+		<div id="wrapper">
+
+			<div id="content">
+
+			<header> 
+		
+		<!-- Barra di navigazione nel sito -->
+		<nav>
+   			<div class="buttoname">
+   				<a th:href="@{/}"> HOME </a>
+   			</div>
+   			<!-- Buffet e chef a tendina -->
+			<div class="tendina">
+			  <button class="buttoname">BUFFET</button>
+			  <div class="content" >
+			    <a th:each="buffet : ${tuttiIBuffet}" th:href="@{'/user/buffet' + '/' + ${buffet.id}}" th:text="${buffet.nome}"></a>
+			  </div>
+			</div>
+
+			<div class="tendina">
+			  <button class="buttoname">CHEF</button>
+			  <div class="content" >
+			    <a th:each="chef : ${tuttiGliChef}" th:href="@{'/user/chef' + '/' + ${chef.id}}" th:text="${chef.nome} + ' ' + ${chef.cognome}"></a>
+			  </div>
+			</div>
+
+			<div class="buttoname">
+   				<a th:href="@{/}"> CONTATTI </a>
+   			</div>
+
+   			<div class="buttoname">
+   				<a th:href="@{/login}"> ADMIN</a>
+   			</div>
+
+		
+	    	</nav>
+		
+		</header>
+
+			<h1>
+				COME CONTATTARCI 📞
+			</h1>
+		
+
+			<div class="contatti_wrapper">
+				<div class="contatti" id="social">
+					<div id="img"> 
+						<img src="/img/wa.png">
+					</div>
+					<div id="info"> <span>+39 3313508932</span></div>
+				</div>
+
+				<div class="contatti" id="social">
+					<div id="img"> 
+						<img src="/img/email.png">
+					</div>
+					<div > fabio.letizia01@gmail.com</div>
+				</div>
+			</div>
+
+
+			<div class="contatti_wrapper">
+				<div class="contatti" id="social">
+					<div id="img"> 
+						<img src="/img/instagram.png">
+					</div>
+					<div> @siw_catering</div>
+				</div>
+
+				<div class="contatti" id="social">
+					<div id="img"> 
+						<img src="/img/fb.png">
+					</div>
+					<div> Catering SIW su Roma</div>
+				</div>
+			</div>
+
+			<div id="mappa">
+			<iframe src="https://maps.google.com/maps?q=Via%20Cola%20di%20Rienzo%20123,%20Roma&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+		</div>
+
+		</div>
+
+		
+		</div>
+
+
+
+	<footer>
+		footer
+	</footer>
+
+	</body>
+</html>

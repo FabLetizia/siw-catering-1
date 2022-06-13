@@ -21,13 +21,13 @@
 		<h4>Tutti i suoi buffet:</h4>
 		<ul>
 			<li th:each="buffet : ${chef.buffets}">
-				<a th:text="'•' + ${buffet.nome} + ' (' + ${buffet.descrizione} + ')"> ...</a>
+				<a th:text="${buffet.nome} + ' (' + ${buffet.descrizione} + ')'"> ...</a>
 			</li>	
 		</ul>
 	    </div>
 	</div>
 	<footer>
-		<a href="/">Home</a>
+		<a th:href="@{/admin/indexAdmin}">HOME</a>
 	</footer>
 </body>
 </html>

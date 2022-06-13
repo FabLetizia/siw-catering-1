@@ -11,9 +11,9 @@
 
 <body>
 	<div>
-		<h4>Modifica Ingrediente <h4>
+		<h4>Modifica Buffet <h4>
         <div>
-		    <form th:action="@{/admin/updateIngrediente/{id}(id=${ingrediente.id})}" th:object = "${ingrediente}" method="POST">
+		    <form th:action="@{/admin/updateBuffet/{id}(id=${buffet.id})}" th:object = "${buffet}" method="POST">
 				<div>
 					<label>Nome</label>
 					<input
@@ -30,14 +30,6 @@
 						name = "descrizione"
 						th:field = "*{descrizione}"
 						placeholder="Inserisci la descrizione"/>
-				</div>
-						
-				<div>
-					<label>Origine</label>
-					<input
-						type = "text"
-						name = "origine"
-						th:field = "*{origine}"					placeholder="Inserisci l'origine"/>
 				</div>
 						
 				<div>

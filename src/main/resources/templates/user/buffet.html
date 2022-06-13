@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>
-<link rel="stylesheet" href="css/index.css" />
+	<head>
+		<link rel="stylesheet" href="/css/buffet.css" />
 
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Catering Siw home page</title>
-</head>
+		<title>Catering Siw home page</title>
+	</head>
 
 <body>
 	<div id="main">
-	<header> 
+		<header> 
 		
 		<!-- Barra di navigazione nel sito -->
 		<nav>
-
-			
-
-
    			<div class="buttoname">
    				<a th:href="@{/}"> HOME </a>
    			</div>
@@ -38,7 +34,7 @@
 			</div>
 
 			<div class="buttoname">
-   				<a th:href="@{/user/contatti}"> CONTATTI </a>
+   				<a th:href="@{/}"> CONTATTI </a>
    			</div>
 
    			<div class="buttoname">
@@ -46,27 +42,40 @@
    			</div>
 
 		
-	    </nav>
+	    	</nav>
 		
-	</header>
+		</header>
+	
+	<div id="main_content">
+		<h1 th:text="${buffet.nome}"></h1>
+		<h3 th:text="${buffet.descrizione}"></h3>
+		<div id="chef"> Chef:
+		<a id="nome" th:href="@{'/user/chef' + '/'+${buffet.chef.id}}"th:text="${buffet.chef.nome}+' '+${buffet.chef.cognome}"></a>
 
-	<div class="title">
-				CATERING SIW SU ROMA 
-			</div>
+		</div>
+
+
+        <div id="desc">
+        	Piatti proposti dallo chef <strong th:text="${buffet.chef.cognome} "> :</strong>
+        </div>
+
+		<ul>
+			<li th:each="piatto : ${buffet.piatti}">
+
+				<a th:href="@{'/user/piatto'+'/'+${piatto.id}}" th:text="${piatto.nome}"> </a>
+			</li>
+
+		</ul>
 
 	</div>
 
-	<div id="info">
-		<h2> CATERING SIW SU ROMA </h2>
-		In tutta Roma con top eventi catering, feste, matrimoni. 
-		Scegli il catering per il tuo evento privato o aziendale.
-		Vuoi organizzare un banchetto per dei festeggiamenti? Scegli la qualità con CateringSiw. Fai una richiesta, scegli il professionista più adatto a te! 
-		Piatti a buffet cerimonia per al tua celebrazione.
-	</div>
+</div>
+
+
 
 	<footer>
 		footer
 	</footer>
 
-</body>
+	</body>
 </html>

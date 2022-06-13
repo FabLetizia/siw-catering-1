@@ -32,7 +32,7 @@ public class BuffetController {
 	@Autowired
 	private ChefService chefService;
 
-	@GetMapping("/buffet/{id}")
+	@GetMapping("/user/buffet/{id}")
 	public String getBuffet(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("buffet", buffetService.findById(id));
 		model.addAttribute("tuttiGliChef", chefService.findAll());
@@ -40,13 +40,13 @@ public class BuffetController {
 		return "user/buffet.html";
 	}
 	
-	@PostMapping("/addBuffet")
+	@PostMapping("/admin/addBuffet")
 	public String addBuffet(@Valid @ModelAttribute("buffet") Buffet buffet, BindingResult bindingResults, Model model) {
 		buffetValidator.validate(buffet, bindingResults);
 		if(!bindingResults.hasErrors()) {
 			buffetService.aggiungiBuffet(buffet);
 			model.addAttribute("buffet", buffet);
-			return "redirect:/indexBuffet";
+			return "redirect:/admin/indexBuffet";
 		}
 		else {
 			model.addAttribute("tuttiGliChef", chefService.findAll());
@@ -55,7 +55,7 @@ public class BuffetController {
 		} 
 	}
 
-	@GetMapping("/buffetForm")
+	@GetMapping("/admin/buffetForm")
 	public String getBuffetForm(Model model) {
 		model.addAttribute("buffet",new Buffet());
 		model.addAttribute("tuttiGliChef", chefService.findAll());
@@ -64,45 +64,57 @@ public class BuffetController {
 
 	}
 
-	//	//richiede tutte le persone
-	//	@GetMapping("/buffets")
-	//	public String getBuffets( Model model) {
-	//		List<Buffet> buffets = buffetService.findAll();
-	//		model.addAttribute("buffets", buffets);
-	//		return "admin/buffet/indexBuffet.html";
-	//	}
-
-	@GetMapping("/indexBuffet")
+	@GetMapping("/admin/indexBuffet")
 	public String getindexBuffet(Model model) {
 		model.addAttribute("buffets", buffetService.findAll());
 		return "admin/buffet/indexBuffet.html";
 
 	}
 
-	@GetMapping("/cancellaBuffet/{id}")
+	@GetMapping("/admin/cancellaBuffet/{id}")
 	public String removeBuffet(@PathVariable("id") Long id, Model model) {
 		buffetService.remove(id);
-		return "redirect:/indexBuffet";
+		return "redirect:/admin/indexBuffet";
 	}
 
-	@GetMapping("/mostraBuffet/{id}")
+	@GetMapping("/admin/mostraBuffet/{id}")
 	public String showBuffet(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("buffet", buffetService.findById(id));
 		return "admin/buffet/mostraBuffet.html";
 	}
 
-	@GetMapping("/modificaBuffet/{id}")
+	@GetMapping("/admin/modificaBuffet/{id}")
 	public String modificaBuffet(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("buffet", buffetService.findById(id));
 		return "admin/buffet/modificaBuffet.html";
 	}
 
-	@GetMapping("/indexPiatto/{id}")
+	@GetMapping("/admin/indexPiatto/{id}")
 	public String getindexPiatto(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("piatti", buffetService.findById(id).getPiatti());
-		model.addAttribute("buffet_id", id);
 		return "admin/piatto/indexPiattoInBuffet.html";
 
 	}
+	
+	@GetMapping("/admin/editBuffet/{id}")
+	  public String getEditBuffet(@PathVariable("id") Long id, Model model) {
+		  model.addAttribute("buffet", buffetService.findById(id));
+		  return "admin/buffet/editBuffet.html";
+	  }
+	
+	 @PostMapping("/admin/updateBuffet/{id}")
+		public String updateBuffet(@PathVariable Long id, @Valid @ModelAttribute("buffet") Buffet buffet, BindingResult bindingResults, Model model) {
+			if(!bindingResults.hasErrors()) {
+				Buffet oldBuffet = buffetService.findById(id);
+				oldBuffet.setId(buffet.getId());
+				oldBuffet.setNome(buffet.getNome());
+				oldBuffet.setDescrizione(buffet.getDescrizione());
+				buffetService.updateBuffet(oldBuffet);
+				model.addAttribute("buffet", oldBuffet);
+				return "redirect:/admin/indexAdmin";
+			}
+			else
+				return "admin/buffet/editBuffet.html";
+		}
 
 }

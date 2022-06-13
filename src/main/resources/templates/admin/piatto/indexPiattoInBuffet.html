@@ -18,21 +18,21 @@
 	    		th:text="${piatto.nome} + ' (' + ${piatto.descrizione} + ')' + '.' "> Amatriciana (piatto tipico romano). </a>
 
 	    		<span>
-				  <a th:href="@{'/mostraPiatto' + '/' + ${piatto.id}}" ><button> Visualizza </button></a>
+				  <a th:href="@{'/admin/mostraPiatto' + '/' + ${piatto.id}}" ><button> Visualizza </button></a>
 
-				  <a th:href="@{'/cancellaPiatto' + '/' + ${piatto.id}}" ><button> Cancella </button></a>
+				  <a th:href="@{'/admin/cancellaPiatto' + '/' + ${piatto.id}}" ><button> Cancella </button></a>
 
-				   <a th:href="@{'/modificaPiatto' + '/' + ${piatto.id}}" ><button> Modifica </button></a>
+				   <a th:href="@{'/admin/modificaPiatto' + '/' + ${piatto.id}}" ><button> Modifica </button></a>
 				</span>
 			</li>
 	    </ul>
 	</div>
 	<div>
-		<a th:href="@{/piattoForm/{id}(id=${buffet_id})}"> + AGGIUNGI PIATTO </a>
+		<a th:href="@{/admin/piattoForm/{id}(id=${buffet_id})}"> + AGGIUNGI PIATTO </a>
 	</div>
 
     <footer>
-		<a href="/">Home</a>
+		<a th:href="@{/admin/modificaBuffet/{id}(id=${buffet_id})}">INDIETRO</a>
 	</footer>
 </body>
 </html>

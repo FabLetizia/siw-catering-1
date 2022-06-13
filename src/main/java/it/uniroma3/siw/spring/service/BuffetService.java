@@ -68,7 +68,10 @@ public class BuffetService {
 
 	public Chef getChefByNomeAndCognomeAndNazionalita(Buffet b) {
 		return chefRepository.findByNomeAndCognomeAndNazionalita(b.getChef().getNome(), b.getChef().getCognome(), b.getChef().getNazionalita());
+	}
+
+	public void updateBuffet(Buffet buffet) {
+		this.aggiungiBuffet(buffet);
 	} 
-	
 
 }

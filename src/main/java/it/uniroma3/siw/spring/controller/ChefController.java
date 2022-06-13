@@ -29,7 +29,7 @@ public class ChefController {
 	private ChefValidator chefValidator;
 	
 	
-	@GetMapping("/chef/{id}")
+	@GetMapping("/user/chef/{id}")
 	public String getChef(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("chef", chefService.findById(id));
 		model.addAttribute("tuttiGliChef", chefService.findAll());
@@ -37,47 +37,64 @@ public class ChefController {
 		return "user/chef.html";
 	}
 	
-	@PostMapping("/addChef")
+	/* DA QUA TUTTO PER ADMIN */
+	@PostMapping("/admin/addChef")
 	  public String addChef(@Valid @ModelAttribute("chef") Chef chef, BindingResult bindingResults, Model model) {
 		  chefValidator.validate(chef,  bindingResults);
 		  if(!bindingResults.hasErrors()) {
 			  chefService.aggiungiChef(chef);
 			  model.addAttribute("chef", chef);
 
-			  return "redirect:/indexChef";
+			  return "redirect:/admin/indexChef";
 		  }
 		  return "admin/chef/chefForm.html";
 	  }
 	
-	@GetMapping("/chefForm")
+	@GetMapping("/admin/chefForm")
 	public String getChefForm(Model model) {
 		model.addAttribute("chef",new Chef());
 		return "admin/chef/chefForm.html";
 	}
 	
-	@GetMapping("/indexChef")
+	@GetMapping("/admin/indexChef")
 	public String getindexChef(Model model) {
 		model.addAttribute("chefs", chefService.findAll());
 		return "admin/chef/indexChef.html";
 	}
 
-	 @GetMapping("/cancellaChef/{id}")
+	 @GetMapping("/admin/cancellaChef/{id}")
 	  public String removeChef(@PathVariable("id") Long id, Model model) {
 		  chefService.remove(id);
-		  return "redirect:/indexChef";
+		  return "redirect:/admin/indexChef";
 	  }
 	
-	@GetMapping("/mostraChef/{id}")
+	@GetMapping("/admin/mostraChef/{id}")
 	  public String showChef(@PathVariable("id") Long id, Model model) {
 		  model.addAttribute("chef", chefService.findById(id));
 		  return "admin/chef/mostraChef.html";
 	  }
 	 
-	 @GetMapping("/modificaChef/{id}")
+	 @GetMapping("/admin/modificaChef/{id}")
 	  public String modificaChef(@PathVariable("id") Long id, Model model) {
 		  model.addAttribute("chef", chefService.findById(id));
 		  return "admin/chef/modificaChef.html";
 	  }
+	 
+	 @PostMapping("/admin/updateChef/{id}")
+		public String updateChef(@PathVariable Long id, @Valid @ModelAttribute("chef") Chef chef, BindingResult bindingResults, Model model) {
+			if(!bindingResults.hasErrors()) {
+				Chef oldChef = chefService.findById(id);
+				oldChef.setId(chef.getId());
+				oldChef.setNome(chef.getNome());
+				oldChef.setCognome(chef.getCognome());
+				oldChef.setNazionalita(chef.getNazionalita());
+				chefService.updateChef(oldChef);
+				model.addAttribute("chef", oldChef);
+				return "redirect:/admin/indexAdmin";
+			}
+			else
+				return "admin/chef/modificaChef.html";
+		}
 	 
 
 }

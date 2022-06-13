@@ -5,7 +5,7 @@
 <title>inserimento buffet</title>
 </head>
 <body>
-	<form th:action="@{/addBuffet}" method="POST" th:object="${buffet}">
+	<form th:action="@{/admin/addBuffet}" method="POST" th:object="${buffet}">
 		<div th:if="${#fields.hasGlobalErrors()}">
 			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">Errore globale</p>
 		</div>

@@ -5,11 +5,16 @@ body {
   height: 100%;
 }
 
-#main {
-  background-image: url("/img/home.jpg");
+#wrapper {
+  background-image: url("/img/roma.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  height: 54em;
+  min-height: 800px;
+}
+
+#content {
+  background-color: rgba(225,225,225,0.5);
+   min-height: 800px;
 }
 
 nav {
@@ -79,23 +84,48 @@ footer {
   background-color: #3e8e41;
 }
 
-#info {
+h1 {
+  margin-top: 3%;
   text-align: center;
-  margin: 4%;
-  font-size: larger;
-}
-
-h2 {
   color: #3e8e41;
 }
 
-div.title {
-    padding-right: 26%;
-    display: flex;
-    align-items: flex-end;
+.contatti_wrapper {
+  display: flex;
+    justify-content: space-evenly;
+    padding: 5%;
     font-size: x-large;
-    color: #3e8e41;
-   	padding: 2% 19% 0 18%;
-    font-weight: bolder;
-    font-family: fantasy;
+    font-weight: bold;
 }
+
+.contatti {
+  text-align: center;
+}
+
+#img {
+  padding-right: 8%;
+}
+
+#social {
+  display: flex;
+  align-items: center;
+}
+
+#info {
+  width: fit-content;
+}
+
+#mappa {
+  text-align: center;
+    padding: 2%;
+}
+
+iframe {
+  height: 350px;
+    width: 82%;
+}
+
+
+
+
+

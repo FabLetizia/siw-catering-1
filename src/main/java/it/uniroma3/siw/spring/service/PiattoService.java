@@ -46,4 +46,8 @@ public class PiattoService {
 
 	}
 
+	public void updatePiatto(Piatto piatto) {
+		this.aggiungiPiatto(piatto);
+	}
+
 }

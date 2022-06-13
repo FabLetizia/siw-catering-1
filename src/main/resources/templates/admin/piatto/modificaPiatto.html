@@ -12,18 +12,17 @@
 <body>
 	<div>
 		<h4>Modifica Piatto <h4>
-
-		<!-- DUBBIO -->
 		<div>
-			<a th:href="@{/}"> Cambia Nome</a>
+			<a th:href="@{'/admin/editPiatto' + '/' + ${piatto.id}}"> Cambia Nome e/o Descrizione</a>
 		</div>
 		<div>
-			<a th:href="@{/}">Cambia Descrizione</a>
-		</div>
-		<div>
-			<a th:href="@{'/indexIngrediente' + '/' + ${piatto.id}}">Ingredienti</a>
+			<a th:href="@{'/admin/indexIngrediente' + '/' + ${piatto.id}}">Ingredienti</a>
 		</div> 
 	</div>
+
+	<footer>
+           <a th:href="@{/admin/indexPiatto/{id}(id=${buffet_id})}">INDIETRO</a>	
+    </footer>
 
 </body>
 </html>

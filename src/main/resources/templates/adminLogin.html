@@ -1,0 +1,30 @@
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Admin Log in</title>
+</head>
+<body>
+	<div>
+		<a href="/index">Home</a>
+	</div>
+	
+    <section>
+	    <p>Admin Login Page</p>
+	    <form th:action="@{/login}" method="POST">
+	        <div>
+		        <div>
+			        <input type="text" name="username"
+				     placeholder="Inserisci username"/>
+		        </div>
+		        <div>
+			        <input type="password" name="password"
+				     placeholder="Inserisci password"/>
+		        </div>
+		        <div>
+			        <button type="submit">Login</button>
+		        </div>
+		    </div>
+	    </form>
+   </section>
+</body>
+</html>

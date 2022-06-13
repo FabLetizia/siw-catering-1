@@ -45,4 +45,8 @@ public class IngredienteService {
 		return ingredienteRepository.existsByNomeAndDescrizioneAndOrigine(ingrediente.getNome(), ingrediente.getDescrizione(), ingrediente.getOrigine());
 	}
 
+	public void updateIngrediente(Ingrediente ingrediente) {
+			this.aggiungiIngrediente(ingrediente);	
+	}
+
 }
