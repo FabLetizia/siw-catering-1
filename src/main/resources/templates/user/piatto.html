@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="/css/buffet.css" />
+		<link rel="stylesheet" href="/css/piatto.css" />
 
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Catering Siw home page</title>
+		<title>Catering Siw: dettagli piatto</title>
 	</head>
 
 <body>
@@ -47,22 +47,17 @@
 		</header>
 	
 	<div id="main_content">
-		<h1 th:text="${buffet.nome}"></h1>
-		<h3 th:text="${buffet.descrizione}"></h3>
-		<div id="chef"> Chef:
-		<a id="nome" th:href="@{'/user/chef' + '/'+${buffet.chef.id}}"th:text="${buffet.chef.nome}+' '+${buffet.chef.cognome}"></a>
-
-		</div>
-
+		<h1 th:text="${piatto.nome}"></h1>
+		<h3 th:text="${piatto.descrizione}"></h3>
 
         <div id="desc">
-        	Piatti proposti dallo chef <strong th:text="${buffet.chef.cognome} "> :</strong>
+        	Ingredienti presenti nel piatto:
         </div>
 
 		<ul>
-			<li th:each="piatto : ${buffet.piatti}">
+			<li th:each="ingrediente : ${piatto.ingredienti}">
 
-				<a th:href="@{'/user/piatto'+'/'+${piatto.id}}" th:text="${piatto.nome}"> </a>
+				<a th:text="${ingrediente.nome} + ' (' + ${ingrediente.descrizione} + '). Origine: ' + ${ingrediente.origine}"> </a>
 			</li>
 
 		</ul>
