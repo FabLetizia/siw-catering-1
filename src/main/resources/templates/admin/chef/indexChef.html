@@ -17,11 +17,11 @@
 	    		th:text="${chef.nome} + ' ' + ${chef.cognome} + ', ' + 'nazionalità: ' + ${chef.nazionalita} + '.' "> Fabio Letizia, nazionalita: italiana</a>
 
 	    		<span>
-				  <a th:href="@{'/mostraChef' + '/' + ${chef.id}}"><button> Visualizza </button></a>
+				  <a th:href="@{'/admin/mostraChef' + '/' + ${chef.id}}"><button> Visualizza </button></a>
 
-				  <a th:href="@{'/cancellaChef' + '/' + ${chef.id}}" ><button> Cancella </button></a>
+				  <a th:href="@{'/admin/cancellaChef' + '/' + ${chef.id}}" ><button> Cancella </button></a>
 
-				   <a th:href="@{'/modificaChef' + '/' + ${chef.id}}" ><button> Modifica </button></a>
+				   <a th:href="@{'/admin/modificaChef' + '/' + ${chef.id}}" ><button> Modifica </button></a>
 
 				</span>
 				

@@ -20,7 +20,7 @@
 	    		<span>
 				  <a th:href="@{'/admin/mostraIngrediente' + '/' + ${ingrediente.id}}" ><button> Visualizza </button></a>
 
-				  <a th:href="@{'/admin/cancellaIngrediente' + '/' + ${ingrediente.id}}" ><button> Cancella </button></a>
+				  <a th:href="@{/admin/cancellaIngredienteDaPiatto/{id1}/{id2}(id1=${ingrediente.id}, id2=${piatto_id})}" ><button> Cancella </button></a>
 
 				   <a th:href="@{'/admin/modificaIngrediente' + '/' + ${ingrediente.id}}" ><button> Modifica </button></a>
 				</span>

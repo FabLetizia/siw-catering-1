@@ -92,8 +92,8 @@ public class BuffetController {
 	@GetMapping("/admin/indexPiatto/{id}")
 	public String getindexPiatto(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("piatti", buffetService.findById(id).getPiatti());
+		model.addAttribute("buffet_id", id);
 		return "admin/piatto/indexPiattoInBuffet.html";
-
 	}
 	
 	@GetMapping("/admin/editBuffet/{id}")

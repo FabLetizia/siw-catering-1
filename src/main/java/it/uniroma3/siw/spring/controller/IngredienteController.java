@@ -1,5 +1,7 @@
 package it.uniroma3.siw.spring.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.spring.model.Ingrediente;
+import it.uniroma3.siw.spring.model.Piatto;
 import it.uniroma3.siw.spring.service.IngredienteService;
 import it.uniroma3.siw.spring.service.PiattoService;
 import it.uniroma3.siw.spring.validator.IngredienteValidator;
@@ -73,8 +76,17 @@ public class IngredienteController {
 
 	 @GetMapping("/admin/cancellaIngrediente/{id}")
 	  public String removeIngrediente(@PathVariable("id") Long id, Model model) {
+		  List<Piatto> piattiConIngrediente = piattoService.findAllConIngrediente(ingredienteService.findById(id));
+		  piattoService.removeIngredienteDaPiatto(piattiConIngrediente, ingredienteService.findById(id));
 		  ingredienteService.remove(id);
 		  return "redirect:/admin/indexIngrediente";
+	  }
+	 
+	 @GetMapping("/admin/cancellaIngredienteDaPiatto/{id1}/{id2}")
+	  public String removeIngredienteDaPiatto(@PathVariable("id1") Long id1, @PathVariable("id2") Long id2, Model model) {
+		  piattoService.findById(id2).getIngredienti().remove(ingredienteService.findById(id1));
+		  piattoService.aggiungiPiatto(piattoService.findById(id2));
+		  return "redirect:/admin/indexAdmin";
 	  }
 	
 	@GetMapping("/admin/mostraIngrediente/{id}")

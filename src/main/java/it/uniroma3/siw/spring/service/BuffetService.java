@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.spring.model.Buffet;
 import it.uniroma3.siw.spring.model.Chef;
+import it.uniroma3.siw.spring.model.Piatto;
 import it.uniroma3.siw.spring.repository.BuffetRepository;
 import it.uniroma3.siw.spring.repository.ChefRepository;
 
@@ -72,6 +73,23 @@ public class BuffetService {
 
 	public void updateBuffet(Buffet buffet) {
 		this.aggiungiBuffet(buffet);
+	}
+
+	public List<Buffet> findAllConPiatto(Piatto piatto) {
+		List<Buffet> buffets = new ArrayList<Buffet>();
+		for(Buffet buffet : buffetRepository.findAll()) {
+			if(buffet.getPiatti().contains(piatto)) {
+				buffets.add(buffet);
+			}	
+		}
+		return buffets;
+	}
+
+	public void removePiattoDaBuffet(List<Buffet> buffetConPiatto, Piatto piatto) {
+		for(Buffet b : buffetConPiatto) {
+			b.getPiatti().remove(piatto);
+		}
+		
 	} 
 
 }
