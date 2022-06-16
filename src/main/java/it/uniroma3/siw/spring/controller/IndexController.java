@@ -70,12 +70,13 @@ public class IndexController {
 	}
 
 	@RequestMapping(value = {"/logout"}, method = RequestMethod.GET) 
-	public String logout(HttpServletRequest request, HttpServletResponse response) {
+	public String logout(HttpServletRequest request, HttpServletResponse response, Model model) {
 		SecurityContextHolder.clearContext();
 		HttpSession session= request.getSession(false);
 		if(session != null)
 			session.invalidate();
-
+		model.addAttribute("tuttiGliChef", chefService.findAll());
+		model.addAttribute("tuttiIBuffet", buffetService.findAll());
 		return "index.html";
 	}
 

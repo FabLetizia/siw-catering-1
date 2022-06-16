@@ -14,6 +14,11 @@ nav {
   justify-content: flex-end;
 }
 
+.navbar {
+  width: 50%;
+  margin-left: 47%;
+}
+
 div.alert {
   margin: 13%;
 }
@@ -53,22 +58,14 @@ div.button {
 }
 
 #btn1 {
-  padding: 4%;
+  padding: 2%;
+  min-width: 24%;
 }
 
-#btn2 {
-  padding: 3.5%;
-  padding-right: 14%;
-  margin-right: 0%;
-  margin-top: 2%;
+.container-fluid a:hover {
+    color: #3e8e41;
 }
 
-#btn3 {
-  padding: 4%;
-  padding-right: 19%;
-  margin-right: 0%;
-  margin-top: 2%;
-
+#title h4 {
+  margin-top: 3%;
 }
-
-

@@ -101,3 +101,18 @@ div.title {
     font-weight: bolder;
     font-family: fantasy;
 }
+
+#container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.contatti {
+  font-size: 22px;
+  padding: 3%;
+}
+
+.contatti h2 {
+  color: black;
+}
+
