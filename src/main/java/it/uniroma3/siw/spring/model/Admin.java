@@ -6,9 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-//@Table(name = "users")
 public class Admin {
 
+	/* VARIABILI D'ISTANZA */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -17,6 +17,8 @@ public class Admin {
 	
 	private String cognome;
 	
+	
+	/* GETTERS E SETTERS */
 	public Long getId() {
 		return id;
 	}

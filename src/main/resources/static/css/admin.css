@@ -1,0 +1,74 @@
+
+body {
+  background-image: url("/img/admin.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  margin: 0;
+  height: 100%;
+}
+
+nav {
+  display: flex;
+  margin-right: 4%;
+  justify-content: flex-end;
+}
+
+div.alert {
+  margin: 13%;
+}
+
+div.container {
+  margin-top: 5%;
+}
+
+h2.view {
+  display: flex;
+  justify-content: center;
+  margin-top: 3%;
+  color: #3e8e41;
+}
+
+div.info {
+  display: flex;
+  justify-content: space-around;
+  font-weight: bold;
+  margin-top: 0.5%;
+}
+
+#box {
+  background-color: #3e8e41;
+  margin-left: 41%;
+  margin-top: 3%;
+}
+
+div.buttons {
+  margin-top: 6%;
+}
+
+div.button {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5%;
+}
+
+#btn1 {
+  padding: 4%;
+}
+
+#btn2 {
+  padding: 3.5%;
+  padding-right: 14%;
+  margin-right: 0%;
+  margin-top: 2%;
+}
+
+#btn3 {
+  padding: 4%;
+  padding-right: 19%;
+  margin-right: 0%;
+  margin-top: 2%;
+
+}
+
+

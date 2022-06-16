@@ -50,9 +50,9 @@ public class IngredienteController {
 			  piattoService.findById(id).getIngredienti().add(ingrediente);
 			  piattoService.aggiungiPiatto(piattoService.findById(id));
 			  model.addAttribute("ingrediente", ingrediente);
-			  return "redirect:/admin/indexBuffet";
+			  return "redirect:/admin/indexIngrediente/" +id;
 		  }
-		  return "admin/ingrediente/ingredienteForm.html";
+		  return "admin/ingrediente/ingredienteFormPerPiatto.html"; //?
 	  }
 	
 	@GetMapping("/admin/ingredienteForm")
@@ -89,11 +89,11 @@ public class IngredienteController {
 		  return "redirect:/admin/indexAdmin";
 	  }
 	
-	@GetMapping("/admin/mostraIngrediente/{id}")
-	  public String showIngrediente(@PathVariable("id") Long id, Model model) {
-		  model.addAttribute("ingrediente", ingredienteService.findById(id));
-		  return "admin/ingrediente/mostraIngrediente.html";
-	  }
+//	@GetMapping("/admin/mostraIngrediente/{id}")
+//	  public String showIngrediente(@PathVariable("id") Long id, Model model) {
+//		  model.addAttribute("ingrediente", ingredienteService.findById(id));
+//		  return "admin/ingrediente/mostraIngrediente.html";
+//	  }
 	 
 	 @GetMapping("/admin/modificaIngrediente/{id}")
 	  public String modificaIngrediente(@PathVariable("id") Long id, Model model) {
@@ -111,7 +111,7 @@ public class IngredienteController {
 				oldIngrediente.setOrigine(ingrediente.getOrigine());
 				ingredienteService.updateIngrediente(oldIngrediente);
 				model.addAttribute("chef", oldIngrediente);
-				return "redirect:/admin/indexAdmin";
+				return "redirect:/admin/indexIngrediente";
 			}
 			else
 				return "admin/ingrediente/modificaIngrediente.html";

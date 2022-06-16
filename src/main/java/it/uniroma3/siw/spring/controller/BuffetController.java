@@ -111,7 +111,7 @@ public class BuffetController {
 				oldBuffet.setDescrizione(buffet.getDescrizione());
 				buffetService.updateBuffet(oldBuffet);
 				model.addAttribute("buffet", oldBuffet);
-				return "redirect:/admin/indexAdmin";
+				return "redirect:/admin/indexBuffet";
 			}
 			else
 				return "admin/buffet/editBuffet.html";

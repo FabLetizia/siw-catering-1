@@ -101,7 +101,7 @@ public class ChefController {
 			oldChef.setNazionalita(chef.getNazionalita());
 			chefService.updateChef(oldChef);
 			model.addAttribute("chef", oldChef);
-			return "redirect:/admin/indexAdmin";
+			return "redirect:/admin/indexChef";
 		}
 		else
 			return "admin/chef/modificaChef.html";

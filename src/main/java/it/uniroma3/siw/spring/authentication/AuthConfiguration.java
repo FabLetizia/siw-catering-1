@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+@SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
 public class AuthConfiguration extends WebSecurityConfigurerAdapter {
@@ -31,8 +32,9 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority("ADMIN") 
                 .anyRequest().authenticated()
                 .and().formLogin()
-                .loginPage("/login")
+                .loginPage("/login").permitAll()
                 .defaultSuccessUrl("/admin/default")
+                .failureUrl("/login-error")
 
                 .and().logout()
                 .logoutUrl("/logout")

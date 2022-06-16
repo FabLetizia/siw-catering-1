@@ -70,9 +70,10 @@ public class PiattoController {
 			buffetService.findById(id).getPiatti().add(piatto);
 			buffetService.aggiungiBuffet(buffetService.findById(id));
 			model.addAttribute("piatto", piatto);
-			return "redirect:/admin/indexBuffet";
+			return "redirect:/admin/indexPiatto/" + id;
 		}
-		return "admin/piatto/piattoForm.html";
+		model.addAttribute("tuttiGliIngredienti", ingredienteService.findAll());
+		return "admin/piatto/piattoFormPerBuffet.html";
 	}
 
 	@GetMapping("/admin/piattoForm")
@@ -145,7 +146,7 @@ public class PiattoController {
 			oldPiatto.setDescrizione(piatto.getDescrizione());
 			piattoService.updatePiatto(oldPiatto);
 			model.addAttribute("piatto", oldPiatto);
-			return "redirect:/admin/indexAdmin";
+			return "redirect:/admin/indexPiatto";
 		}
 		else
 			return "admin/piatto/editPiatto.html";

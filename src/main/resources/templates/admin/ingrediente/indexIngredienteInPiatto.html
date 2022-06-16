@@ -1,38 +1,100 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- <link rel="stylesheet" href="style.css" /> -->
+<link rel="stylesheet" href="/css/admin.css" />
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Amministratore page</title>
+	<title>Admin: ingredenti piatto</title>
 </head>
 
 <body>
-	<h4> INGREDIENTI </h4>
 	<div>
-		<ul>
-	    <li th:each="ingrediente : ${ingredienti}">
-	    	<a
-	    		th:text="${ingrediente.nome} + ' (' + ${ingrediente.descrizione} + ')' + '.' "> Sale (grosso). </a>
+		<header>
+			<nav class="navbar navbar-expand-lg">
+               <div class="container-fluid">
+                  <a class="navbar-brand" th:href="@{/admin/indexAdmin}"> HOME </a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
 
-	    		<span>
-				  <a th:href="@{'/admin/mostraIngrediente' + '/' + ${ingrediente.id}}" ><button> Visualizza </button></a>
+               <div class="container-fluid">
+                  <a class="navbar-brand" th:href="@{/admin/indexIngrediente}">INGREDIENTI</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
 
-				  <a th:href="@{/admin/cancellaIngredienteDaPiatto/{id1}/{id2}(id1=${ingrediente.id}, id2=${piatto_id})}" ><button> Cancella </button></a>
+               <div class="container-fluid">
+                  <a class="navbar-brand" th:href="@{/admin/indexChef}">CHEF</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
 
-				   <a th:href="@{'/admin/modificaIngrediente' + '/' + ${ingrediente.id}}" ><button> Modifica </button></a>
-				</span>
-			</li>
-	    </ul>
+                <div class="container-fluid">
+                  <a class="navbar-brand" th:href="@{/admin/indexPiatto}">PIATTI</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
+
+                <div class="container-fluid">
+                  <a class="navbar-brand" th:href="@{/admin/indexBuffet}">BUFFET</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
+
+                <div class="container-fluid">
+                  <a class="navbar-brand" th:href="@{/logout}">LOGOUT</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
+          </nav>
+        </header>
+    </div>
+
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-6 border border-success container justify-content-center card">
+              <div align="center"><h4>INGREDIENTI DEL PIATTO</h4>  </div>
+          <div class="card-body">
+    <table class="table">
+         <thead>
+           <tr>
+           	  <th scope="col">Id</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Descrizione</th>
+              <th scope="col">Origine</th>
+              <th scope="col">Operazioni</th>
+           </tr>
+         </thead>
+  <tbody>
+        <tr th:each="ingrediente : ${ingredienti}">
+           <td th:text="${ingrediente.id}">1</td>
+           <td th:text="${ingrediente.nome}">Riso</td>
+           <td th:text="${ingrediente.descrizione}">Basmati</td>
+           <td th:text="${ingrediente.origine}">Italia</td>
+           <td> 
+              <a th:href="@{/admin/cancellaIngredienteDaPiatto/{id1}/{id2}(id1=${ingrediente.id}, id2=${piatto_id})}"><button class="btn btn-danger" > Cancella </button></a>
+              <a th:href="@{'/admin/modificaIngrediente' + '/' + ${ingrediente.id}}" ><button class="btn btn-warning" > Modifica </button></a>
+          </td>
+ </tbody>
+</table>
+
+    <div>
+		<a th:href="@{/admin/ingredienteForm/{id}(id=${piatto_id})}" class="btn btn-info"> + AGGIUNGI INGREDIENTE A PIATTO </a>
 	</div>
-	<div>
-		<a th:href="@{/admin/ingredienteForm/{id}(id=${piatto_id})}"> + AGGIUNGI INGREDIENTE A PIATTO </a>
-	</div>
-
-    <footer>
-		<a href="/">Home</a>
-	</footer>
+</div>
+</div>
+</div>
+</div>
+	
 </body>
 </html>

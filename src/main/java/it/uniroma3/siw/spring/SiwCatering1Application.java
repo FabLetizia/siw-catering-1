@@ -1,20 +1,14 @@
 package it.uniroma3.siw.spring;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
-import it.uniroma3.siw.spring.model.Admin;
-import it.uniroma3.siw.spring.model.Credentials;
-import it.uniroma3.siw.spring.repository.CredentialsRepository;
 
 @SpringBootApplication
 public class SiwCatering1Application implements CommandLineRunner {
 	
-    @Autowired private CredentialsRepository credR;
-	@Autowired protected PasswordEncoder passwordEncoder;
+//    @Autowired private CredentialsRepository credR;
+//	@Autowired protected PasswordEncoder passwordEncoder;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SiwCatering1Application.class, args);

@@ -1,0 +1,13 @@
+
+/*.navbar-brand a:hover {
+	border-color: orangered ;
+	text-decoration-color: orange;
+} non funziona: Elisa*/
+
+div.row {
+	margin-top: 5%;
+}
+
+div.alert {
+	color: red;
+}

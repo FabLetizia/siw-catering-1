@@ -1,31 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- <link rel="stylesheet" href="style.css" /> -->
+<link rel="stylesheet" href="/css/admin.css" />
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Amministratore page</title>
+	<title>Admin: modifica buffet</title>
 </head>
 
 <body>
+
+    <div>
+		<header>
+			<nav class="navbar navbar-expand-lg">
+               <div class="container-fluid">
+                  <a class="navbar-brand" th:href="@{/admin/indexAdmin}"> HOME </a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
+
+               <div class="container-fluid">
+                  <a class="navbar-brand" th:href="@{/admin/indexIngrediente}">INGREDIENTI</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
+
+               <div class="container-fluid">
+                  <a class="navbar-brand" th:href="@{/admin/indexChef}">CHEF</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
+
+                <div class="container-fluid">
+                  <a class="navbar-brand" th:href="@{/admin/indexPiatto}">PIATTI</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
+
+                <div class="container-fluid">
+                  <a class="navbar-brand" th:href="@{/admin/indexBuffet}">BUFFET</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
+
+                <div class="container-fluid">
+                  <a class="navbar-brand" th:href="@{/logout}">LOGOUT</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
+          </nav>
+        </header>
+    </div>
+
 	<div>
-		<h4>Modifica Buffet <h4>
-		<div>
-			<a th:href="@{'/admin/editBuffet' + '/' + ${buffet.id}}"> Cambia Nome e/o Descrizione</a>
-		</div>
-		<div>
-			<a th:href="@{'/admin/modificaChef' + '/' + ${buffet.chef.id}}"> Modifica Chef</a>
-		</div>
-		<div>
-			<a th:href="@{'/admin/indexPiatto' + '/' + ${buffet.id}}">Piatti</a>
+		<h2 class="view">Cosa vuoi modificare del buffet? <h2>
+		<div class="buttons">
+			<div class="button">
+			<a class="btn btn-secondary" id="btn1" th:href="@{'/admin/editBuffet' + '/' + ${buffet.id}}"> Cambia Nome e/o Descrizione</a>
+		    </div>
+
+            <div class="button">
+			<a class="btn btn-secondary" id="btn2" th:href="@{'/admin/modificaChef' + '/' + ${buffet.chef.id}}"> Modifica Chef</a>
+			</div>
+		
+		<div class="button">
+			<a class="btn btn-secondary" id="btn3" th:href="@{'/admin/indexPiatto' + '/' + ${buffet.id}}">Piatti</a>
 		</div> 
 	</div>
-
-	<footer>
-		<a th:href="@{/admin/indexBuffet}">INDIETRO</a>
-	</footer>
+	</div>
 
 </body>
 </html>

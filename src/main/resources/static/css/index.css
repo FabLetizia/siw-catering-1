@@ -18,6 +18,7 @@ nav {
   justify-content: flex-end;
 }
 
+/* TENDINA */
 /* Style The Dropdown Button */
 .buttoname {
   padding: 16px;
@@ -69,6 +70,7 @@ nav {
 .tendina:hover .buttoname {
   background-color: #3e8e41;
 }
+/**/
 
 a {
   color: black;

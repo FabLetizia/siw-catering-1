@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Credentials {
 
+	/* VARIABILI D'ISTANZA */
 	public static final String DEFAULT_ROLE = "DEFAULT";
 	public static final String ADMIN_ROLE = "ADMIN";
 	
@@ -30,6 +31,8 @@ public class Credentials {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Admin admin;
 
+	
+	/* GETTERS E SETTERS */
 	public Long getId() {
 		return id;
 	}

@@ -1,38 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- <link rel="stylesheet" href="style.css" /> -->
+<link rel="stylesheet" href="/css/admin.css" />
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Amministratore page</title>
+	<title>Admin: visualizza piatto</title>
 </head>
 
 <body>
+
+   <div>
+		<header>
+			<nav class="navbar navbar-expand-lg">
+               <div class="container-fluid">
+                  <a class="navbar-brand" th:href="@{/admin/indexAdmin}"> HOME </a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
+
+               <div class="container-fluid">
+                  <a class="navbar-brand" th:href="@{/admin/indexIngrediente}">INGREDIENTI</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
+
+               <div class="container-fluid">
+                  <a class="navbar-brand" th:href="@{/admin/indexChef}">CHEF</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
+
+                <div class="container-fluid">
+                  <a class="navbar-brand" th:href="@{/admin/indexPiatto}">PIATTI</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
+
+                <div class="container-fluid">
+                  <a class="navbar-brand" th:href="@{/admin/indexBuffet}">BUFFET</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
+
+                <div class="container-fluid">
+                  <a class="navbar-brand" th:href="@{/logout}">LOGOUT</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                  </button>
+               </div>
+          </nav>
+        </header>
+    </div>
+
 	<div>
-		<h4>Dettagli Piatto</h4>
-		<div>
-			<span th:text="${piatto.nome}">Carbonara</span>
-			<span th:text="${piatto.descrizione}">Piatto tipico romano</span>
-			
+		<h2 class="view">Dettagli Piatto</h2>
+		<div class="info-container">
+			<div class="info" th:text="'• NOME: ' + ${piatto.nome}">Amatriciana</div>
+			<div class="info" th:text="'• DESCRIZIONE: ' + ${piatto.descrizione}"> Primo tipico romano</div>
 		</div>
+	
+		<div class="card" id="box" style="width: 18rem;">
+           <div class="card-header"> Tutti i suoi ingredienti
+           </div>
+           <ul class="list-group list-group-flush">
+              <li class="list-group-item" th:each="ingrediente : ${piatto.ingredienti}" th:text="${ingrediente.nome} + ' (' + ${ingrediente.descrizione} + ')' "></li>
+           </ul>
 
-		<div>
-		<h4>Tutti gli ingredienti:</h4>
-		<ul>
-			<li th:each="ingrediente : ${piatto.ingredienti}">
-				<a th:text="${ingrediente.nome} + ' (' + ${ingrediente.descrizione} + ') ORIGINE: ' + ${ingrediente.origine}"> Uova, pepe... </a>
-				
-			</li>
-			
-			
-		</ul>
+    </div>
 
-	</div>
-	</div>
-	<footer>
-		<a th:href="@{/admin/indexAdmin}">HOME</a>
-	</footer>
+
+
 </body>
 </html>

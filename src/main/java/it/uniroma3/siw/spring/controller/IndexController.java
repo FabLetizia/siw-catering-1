@@ -5,12 +5,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -60,6 +61,7 @@ public class IndexController {
 			return "/admin/indexAdmin.html";
 		}
 		return "index.html";
+		
 	}
 
 	@GetMapping("/login")
@@ -77,11 +79,18 @@ public class IndexController {
 		return "index.html";
 	}
 
-	@PostMapping("/login")
-	public String loginAdmin(Model model) {
-		return "redirect:/admin/default";
-	}
-	
-
-
+    @GetMapping("/login-error")
+    public String login(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession(false);
+        String errorMessage = null;
+        if (session != null) {
+            AuthenticationException ex = (AuthenticationException) session
+                    .getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
+            if (ex != null) {
+                errorMessage = ex.getMessage();
+            }
+        }
+        model.addAttribute("errorMessage", errorMessage);
+        return "adminLogin.html";
+    }
 }
